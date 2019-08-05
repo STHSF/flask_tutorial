@@ -24,5 +24,5 @@ def password():
         return '<h1>转换后的timestamp是: %s<h1>' % dataManager.datestamp(words)
 
 if __name__== '__main__':
-    print('start')
+    print('start') # main函数中添加代码, 在启动flask的时候, 这些代码就会首先运行.
     app.run(host='10.15.5.164', port='8989')
