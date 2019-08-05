@@ -13,10 +13,12 @@ def index():
 @app.route('/user/<name>')
 def user(name):
     return '<h1>Hello, %s<h1>' % name
+
 @app.route('/user/pws.json', methods = ['GET', 'POST'])
 def password():
     if request.method == 'POST':
         words = request.form['pwd']
+
     elif request.method == 'GET':
         words = request.args.get('pwd')
 
