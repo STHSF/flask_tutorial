@@ -1,8 +1,6 @@
 # 导入数据
 import ipdb
 from sklearn.datasets import load_boston
-data = load_boston()
-x, y = data['data'], data['target']
 
 # 导入常用模型包
 from sklearn.linear_model import LinearRegression, Ridge
@@ -14,6 +12,8 @@ import xgboost as xgb
 
 
 def xgb_test():
+    data = load_boston()
+    x, y = data['data'], data['target']
     x_train, x_valid, y_train, y_valid = train_test_split(x, y, test_size=0.2, random_state=2019)
     # 创建xgb矩阵
     d_x = xgb.DMatrix(x_train)
