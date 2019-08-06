@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 import dataManager
+import model
 
 app = Flask(__name__)
 
@@ -25,7 +26,11 @@ def password():
     if words:
         return '<h1>转换后的timestamp是: %s<h1>' % dataManager.datestamp(words)
 
+@app.route('/xgb')
+def runxgb():
+    return '<h1>MSE:{} in XGBR<h1>'.format(model.xgb_test())
+
 if __name__== '__main__':
     print('Flask Start') # main函数中添加代码, 在启动flask的时候, 这些代码就会首先运行.
     globle_variable = 'Hello Flask'
-    app.run(host='10.15.5.164', port='8989')
+    app.run(host='0.0.0.0', port='8989')
