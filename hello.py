@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import request
 import dataManager
 import model
+import json
 
 app = Flask(__name__)
 
@@ -18,13 +19,25 @@ def user(name):
 @app.route('/user/pws.json', methods = ['GET', 'POST'])
 def password():
     if request.method == 'POST':
-        words = request.form['pwd']
+        data = json.loads(request.get_data(as_text=True))
+        words = data['pwd']
+        # words = request.form['pwd']
 
     elif request.method == 'GET':
         words = request.args.get('pwd')
 
     if words:
-        return '<h1>转换后的timestamp是: %s<h1>' % dataManager.datestamp(words)
+        # return '<h1>转换后的timestamp是: %s<h1>' % dataManager.datestamp(words)
+        return '<h1>转换后的timestamp是: %s<h1>' % words
+
+@app.route('/login', methods = ['POST'])
+def login():
+    print(request.get_data())
+    # data = json.loads(request.get_data())
+    # print(request.form['username'])
+    username = request.form["username"]
+    password = request.form["password"]
+    return jsonify({"login": username, "psw":password}) # 返回布尔值
 
 @app.route('/xgb')
 def runxgb():
