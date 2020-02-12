@@ -10,8 +10,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     user_agent = request.headers.get('User-Agent')
-    return '<p>{}, Your brower is {}</p>'.format(globle_variable, user_agent)
-
+    # return '<p>{}, Your brower is {}</p>'.format(globle_variable, user_agent)
+    return '<p>The user_agent of your brower is {}</p>'.format(user_agent)
 @app.route('/user/<name>')
 def user(name):
     return '<h1>Hello, %s<h1>' % name
@@ -45,5 +45,5 @@ def runxgb():
 
 if __name__== '__main__':
     print('Flask Start') # main函数中添加代码, 在启动flask的时候, 这些代码就会首先运行.
-    globle_variable = 'Hello Flask'
-    app.run(host='0.0.0.0', port='8989')
+    # globle_variable = 'Hello Flask'
+    app.run(host='127.0.0.1', port='8989')
